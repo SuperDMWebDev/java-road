@@ -1,26 +1,28 @@
 package com.example.javaroad.entity;
 
+import com.example.javaroad.audit.Auditable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name="users")
-@NamedQuery(name="User.findByEmailAddress", query= "select u from User u where u.emailAddress = ?1")
-@NamedQueries(
-        value= {
-                @NamedQuery(name="User.findByLastName",query="select u from User u where u.lastname = ?1")
-        }
-)
-public class User {
+@EntityListeners(AuditingEntityListener.class)
+public class User extends Auditable<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstname;
-    private String lastname;
-    private Date startDate;
-    private String emailAddress;
-    private int age;
-    private int active;
+
+    @Column(name="first_name",nullable = false)
+    private String firstName;
+
+    @Column(name="last_name",nullable = false)
+    private String lastName;
+
+    @Column(name="email_address",nullable = false)
+    private String emailId;
 
     public Long getId() {
         return id;
@@ -30,64 +32,27 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", startDate=" + startDate +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", age=" + age +
-                ", active=" + active +
-                '}';
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 }
