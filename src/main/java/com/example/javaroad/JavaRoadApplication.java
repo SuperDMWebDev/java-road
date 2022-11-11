@@ -12,7 +12,6 @@ public class JavaRoadApplication {
 
         SpringApplication.run(JavaRoadApplication.class,args);
 
-
     }
 
 }
