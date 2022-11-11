@@ -32,7 +32,7 @@ public class WriteJson {
     public static void main(String[] args) throws FileNotFoundException {
         Post post = createPost();
 
-        JsonObjectBuilderTest postBuilder = Json.createObjectBuilder();
+        JsonObjectBuilder postBuilder = Json.createObjectBuilder();
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 
         for (String tag : post.getTags()) {
