@@ -28,14 +28,14 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long employeeId){
         return employeeService.getEmployeeById(employeeId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long employeeId,
                                                    @RequestBody Employee employee){
         return employeeService.getEmployeeById(employeeId)
@@ -46,7 +46,7 @@ public class EmployeeController {
                     savedEmployee.setEmail(employee.getEmail());
 
                     Employee updatedEmployee = employeeService.updateEmployee(savedEmployee);
-                    return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
+                    return new ResponseEntity<Employee>(updatedEmployee, HttpStatus.OK);
 
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -59,5 +59,11 @@ public class EmployeeController {
 
         return new ResponseEntity<String>("Employee deleted successfully!.", HttpStatus.OK);
 
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Employee>> searchEmployees(@RequestParam("query") String query)
+    {
+        return ResponseEntity.ok(employeeService.searchEmployee(query));
     }
 }
