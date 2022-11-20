@@ -1,12 +1,43 @@
 package com.example.javaroad;
 
-
 import java.util.HashMap;
 
-//@ApplicationPath("resources")
-public class JavaRoadApplication {
-    public static void main(String[] args)
-    {
+public final class NotFinalClassExample {
+
+    // fields of the FinalClassExample class
+    private final int id;
+
+    private final String name;
+
+    private final HashMap<String,String> testMap;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Getter function for mutable objects
+
+    public HashMap<String, String> getTestMap() {
+        return testMap;
+    }
+
+    //Constructor method performing shallow copy
+
+    public NotFinalClassExample(int i, String n, HashMap<String,String> hm){
+        System.out.println("Performing Shallow Copy for Object initialization");
+        this.id=i;
+        this.name=n;
+        this.testMap=hm;
+    }
+
+    // Test the immutable class
+
+    public static void main(String[] args) {
         HashMap<String, String> h1 = new HashMap<String,String>();
         h1.put("1", "first");
         h1.put("2", "second");
@@ -34,6 +65,7 @@ public class JavaRoadApplication {
         hmTest.put("4", "new");
 
         System.out.println("ce testMap after changing variable from getter methods: "+ce.getTestMap());
+
     }
 
 }
