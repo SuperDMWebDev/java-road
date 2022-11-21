@@ -3,16 +3,16 @@
   "title" : "Jackson JSON API Guide",
   "description" : "Post about Jackson JSON API",
   "content" : "HTML content here",
-  "postedAt" : 1666927627878,
-  "lastUpdatedAt" : 1666927627878,
+  "postedAt" : 1668960308935,
+  "lastUpdatedAt" : 1668960308935,
   "tags" : [ {
     "id" : 1,
     "name" : "Java"
   }, {
-    "id" : 3,
-    "name" : "JSON"
-  }, {
     "id" : 2,
     "name" : "Jackson"
+  }, {
+    "id" : 3,
+    "name" : "JSON"
   } ]
 }

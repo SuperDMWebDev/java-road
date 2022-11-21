@@ -1,39 +1,22 @@
 package com.example.javaroad;
 
 
-import java.util.HashMap;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 //@ApplicationPath("resources")
 public class JavaRoadApplication {
-    public static void main(String[] args)
-    {
-        HashMap<String, String> h1 = new HashMap<String,String>();
-        h1.put("1", "first");
-        h1.put("2", "second");
+    public static void main(String[] args) {
+        Locale locale = new Locale("en","US");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT,locale);
+        String date = dateFormat.format(new Date());
+        System.out.println("date "+date);
 
-        String s = "original";
-
-        int i=10;
-
-        FinalClassExample ce = new FinalClassExample(i,s,h1);
-
-        // print the ce values
-        System.out.println("ce id: "+ce.getId());
-        System.out.println("ce name: "+ce.getName());
-        System.out.println("ce testMap: "+ce.getTestMap());
-        // change the local variable values
-        i=20;
-        s="modified";
-        h1.put("3", "third");
-        // print the values again
-        System.out.println("ce id after local variable change: "+ce.getId());
-        System.out.println("ce name after local variable change: "+ce.getName());
-        System.out.println("ce testMap after local variable change: "+ce.getTestMap());
-
-        HashMap<String, String> hmTest = ce.getTestMap();
-        hmTest.put("4", "new");
-
-        System.out.println("ce testMap after changing variable from getter methods: "+ce.getTestMap());
+        String pattern = "EEEEE MMMMM yyyy HH:mm:ss.SSSZ";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("fr", "FR"));
+        String date1 = simpleDateFormat.format(new Date());
+        System.out.println(date1);
     }
-
 }
